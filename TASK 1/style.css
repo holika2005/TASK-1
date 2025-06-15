@@ -1,0 +1,307 @@
+/*
+ * CSS Variables (For easier theme management)
+ * Define common colors here for quick updates.
+ */
+:root {
+    /* Primary Colors */
+    --color-dark-blue: #2c3e50; /* Initial Navbar, Main Heading */
+    --color-contrast : #e74c3c; /* Scrolled Navbar */
+    --color-content-bg: #ffffff; /* Content Background */
+    --color-white: #ffffff; /* General White text */
+    --color-darker-blue: #1a2732; /* Previous Navbar hover color */
+    --color-light-pink: #f8c0c0; /* Light pink for navbar hover */
+
+
+    /* Accent Colors */
+    --color-text-dark-gray: #34495e; /* Paragraph Text */
+    --color-hover-dark-blue: #34495e; /* Main Nav Link Hover */
+    --color-hover-dark-red: #c0392b; /* Scrolled Nav Link Hover */
+    --color-accent-yellow-orange: #f39c12; /* Social Icons Hover & Subheading Color 2 */
+    --color-section-border: #bdc3c7; /* Content section border */
+
+    /* Subheading Scroll Colors */
+    --color-h2-default: #34495e; /* Default subheading color */
+    --color-h2-active-1: #e74c3c; /* Terracotta */
+    --color-h2-active-2: #f39c12; /* Vibrant Yellow/Orange */
+    --color-h2-active-3: #2ecc71; /* Emerald Green */
+    --color-h2-active-4: #9b59b6; /* Amethyst Purple */
+
+    /* Font Families */
+    --font-main-heading: 'Montserrat', sans-serif; /* For h1 */
+    --font-subheading: 'Lato', sans-serif; /* For h2 */
+    --font-body: 'Merriweather', serif; /* For paragraphs, etc. */
+    --font-nav-link: 'Open Sans', sans-serif; /* For navigation links */
+}
+
+/* Smooth scrolling for all anchor links */
+html {
+    scroll-behavior: smooth;
+    /* This will ensure the scroll target positions correctly below the fixed navbar */
+    scroll-padding-top: 70px; /* Adjust this value to be roughly the height of your navbar */
+}
+
+
+/*
+ * General Styles
+ * - Apply to body and overall page elements
+ */
+body {
+    margin: 0;
+    font-family: var(--font-body); /* Apply Merriweather to the general body text */
+    line-height: 1.6;
+    background: linear-gradient(to right, #e0eafc, #cfdef3); /* Subtle blue gradient */
+    color: var(--color-text-dark-gray);
+    min-height: 100vh; /* Ensure body takes full viewport height for gradient visibility */
+    overflow-x: hidden; /* Prevent horizontal scroll bar from appearing */
+}
+
+/*
+ * Navigation Bar (Navbar) Styles
+ * - Fixed navigation menu
+ */
+.navbar {
+    position: fixed; /* Keep the navbar fixed at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-dark-blue); /* Dark blue initial background */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    z-index: 1000; /* Ensure navbar is above other content */
+    display: flex; /* Flexbox for layout */
+    justify-content: center; /* Center content */
+    align-items: center; /* Vertically align items */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+/* Navbar background on hover - Now Light Pink */
+.navbar:hover {
+    background-color: var(--color-light-pink); /* Light pink on hover */
+}
+
+/* Scrolled Navbar styles (these take precedence over general hover if scrolled) */
+.navbar.scrolled {
+    background-color: var(--color-terra-cotta); /* Terracotta red when scrolled */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow when scrolled */
+}
+
+/* Scrolled Navbar hover (takes precedence over general hover and scrolled styles) */
+.navbar.scrolled:hover {
+    background-color: var(--color-light-pink); /* Light pink on hover even when scrolled */
+}
+
+
+/* Styles for main navigation links (Home, About, etc.) */
+.navbar a {
+    color: var(--color-white); /* White text color for links */
+    text-decoration: none; /* Remove underline */
+    padding: 15px 20px; /* Padding around each link */
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--font-nav-link); /* Navigation links will use Open Sans */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions for hover */
+}
+
+/* Adjust link color when navbar is light pink */
+.navbar:hover a {
+    color: var(--color-dark-blue); /* Darker text for better contrast on light pink */
+}
+.navbar.scrolled:hover a {
+    color: var(--color-dark-blue); /* Darker text for better contrast on light pink */
+}
+
+.navbar a:hover {
+    background-color: var(--color-hover-dark-blue); /* Darker blue on hover */
+    color: var(--color-white); /* Keep text white on hover */
+}
+
+.navbar.scrolled a {
+    color: var(--color-white); /* Ensure text remains white on red background */
+}
+
+.navbar.scrolled a:hover {
+    background-color: var(--color-hover-dark-red); /* Darker terracotta on hover when scrolled */
+}
+
+/*
+ * Social Icons Styles
+ * - LinkedIn, Mail, Instagram icons
+ */
+.social-icons {
+    margin-left: 30px; /* Space between main menu links and social icons */
+    display: flex; /* Use flexbox for internal icon alignment */
+    align-items: center; /* Vertically align icons */
+}
+
+.social-icons a {
+    color: var(--color-white); /* Default icon color (white) */
+    font-size: 22px; /* Slightly larger icon size */
+    margin: 0 12px; /* Space between individual icons */
+    padding: 0; /* Remove padding inherited from .navbar a */
+    display: flex; /* To perfectly center icon if specific padding was needed */
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease; /* Smooth transition for icon color on hover */
+}
+
+/* Adjust social icon color when navbar is light pink */
+.navbar:hover .social-icons a,
+.navbar.scrolled:hover .social-icons a {
+    color: var(--color-dark-blue); /* Darker icons for better contrast on light pink */
+}
+
+.social-icons a:hover {
+    color: var(--color-accent-yellow-orange); /* Sunflower yellow/orange on hover for icons */
+    background-color: transparent; /* No background change for icons on hover */
+}
+
+/*
+ * Hero Section Styles
+ * - Takes up the full viewport height at the top of the page
+ */
+.hero-section {
+    height: 100vh; /* Make it fill the entire viewport height */
+    display: flex; /* Use flexbox to center content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center; /* Center text within hero-content */
+    color: var(--color-dark-blue); /* Text color for hero section */
+    padding-top: 60px; /* Adjust for fixed navbar height */
+    box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.hero-content {
+    max-width: 900px; /* Limit width of content for readability */
+    padding: 20px;
+}
+
+.hero-section h1 {
+    font-family: var(--font-main-heading); /* Montserrat for hero heading */
+    font-size: 4.5em; /* Even larger font size for hero heading */
+    margin-bottom: 0.3em; /* Reduced margin for closer spacing with paragraph */
+    line-height: 1.1;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.15); /* More prominent text shadow */
+    color: var(--color-dark-blue); /* Consistent heading color */
+}
+
+.hero-section p {
+    font-family: var(--font-body); /* Merriweather for hero paragraph */
+    font-size: 1.4em; /* Larger paragraph for hero section */
+    color: var(--color-text-dark-gray);
+    max-width: 700px;
+    margin: 0 auto; /* Center the paragraph if it's narrower than its container */
+}
+
+
+/*
+ * Main Content Area Styles
+ * - Styles for the main content of the page (About Us, Services, etc.)
+ */
+.content {
+    padding: 40px 20px;
+    background-color: var(--color-content-bg); /* White background for the content area */
+    max-width: 800px; /* Max width for readability */
+    margin-left: auto; /* Center the content block horizontally */
+    margin-right: auto; /* Center the content block horizontally */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for content block */
+    border-radius: 10px; /* Slightly more rounded corners */
+    margin-top: -100px; /* Adjusted to pull content slightly up from hero, ensuring "About Us" is visible */
+    position: relative; /* Needed for z-index to work against other elements if overlapping */
+    z-index: 10; /* Bring content slightly above background if overlapping */
+}
+
+/* NEW: Spacer for "A4-like" empty pages between sections */
+.section-spacer {
+    height: 100vh; /* Make each spacer take up a full viewport height */
+    /* You can add a subtle background here to visualize the "pages" if needed, e.g., background-color: #f0f0f0; */
+    display: flex; /* Optional: if you want to center something in the spacer */
+    align-items: center; /* Optional: for vertical centering */
+    justify-content: center; /* Optional: for horizontal centering */
+}
+
+.content h2 {
+    font-family: var(--font-subheading); /* Lato for subheadings */
+    color: var(--color-h2-default); /* Default color before becoming active */
+    margin-top: 40px; /* Standard margin */
+    margin-bottom: 15px; /* Spacing below h2 */
+    border-bottom: 2px solid var(--color-section-border); /* Underline for sections */
+    padding-bottom: 10px;
+    font-size: 2.5em; /* INCREASED: Larger subheading font size */
+    transition: color 0.5s ease; /* Smooth transition for color changes */
+}
+
+/* Classes added by JavaScript for subheading colors on scroll */
+.content h2.active-h2-color-1 {
+    color: var(--color-h2-active-1);
+}
+.content h2.active-h2-color-2 {
+    color: var(--color-h2-active-2);
+}
+.content h2.active-h2-color-3 {
+    color: var(--color-h2-active-3);
+}
+.content h2.active-h2-color-4 {
+    color: var(--color-h2-active-4);
+}
+
+
+.content p {
+    font-family: var(--font-body); /* Merriweather for content paragraphs */
+    color: var(--color-text-dark-gray); /* Gray text color for paragraphs */
+    margin-bottom: 25px; /* Standard margin-bottom for spacing between paragraphs */
+    font-size: 1.1em; /* Slightly larger paragraph text for readability */
+}
+
+
+/*
+ * Responsive Adjustments (Media Queries)
+ * - Basic media query for smaller screens (e.g., mobile devices)
+ */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically on small screens */
+        padding: 10px 0;
+        height: auto; /* Adjust height based on content */
+    }
+
+    .navbar a {
+        padding: 10px 15px;
+        font-size: 15px;
+    }
+
+    .social-icons {
+        margin-left: 0; /* Remove left margin when stacked */
+        margin-top: 10px; /* Add top margin when stacked */
+        width: 100%; /* Take full width to center icons better */
+        justify-content: center; /* Center icons horizontally when stacked */
+    }
+
+    .social-icons a {
+        font-size: 18px;
+        margin: 0 8px;
+    }
+
+    /* Adjust hero section for smaller screens */
+    .hero-section {
+        padding-top: 80px; /* More padding top for smaller screens if navbar stacks */
+    }
+    .hero-section h1 {
+        font-size: 2.8em; /* Smaller heading size on mobile */
+    }
+    .hero-section p {
+        font-size: 1.1em; /* Adjust paragraph size for mobile */
+    }
+
+    .content {
+        margin-top: -50px; /* Adjust this value if needed for mobile to bring content up */
+        padding: 20px 15px; /* Adjust padding for smaller screens */
+    }
+
+    .content h2 {
+        font-size: 2em; /* Adjusted smaller subheading size on mobile */
+    }
+
+    .section-spacer {
+        height: 70vh; /* Adjust height for mobile devices to prevent excessive scrolling */
+    }
+}
