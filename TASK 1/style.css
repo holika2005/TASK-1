@@ -1,0 +1,585 @@
+/*
+ * CSS Variables (For easier theme management)
+ * Define common colors here for quick updates.
+ */
+:root {
+    /* Primary Colors */
+    --color-dark-blue: #2c3e50; /* Initial Navbar, Main Heading (Dark Blue) */
+    --color-content-bg: #ffffff; /* Content Background (for cards) */
+    --color-white: #ffffff; /* General White text */
+
+    /* Hover Colors */
+    --color-navbar-hover: #f8c0c0; /* Light pink for navbar hover */
+    --color-main-nav-link-hover: #34495e; /* Darker blue for initial nav link hover */
+    --color-scrolled-nav-link-hover: #000000; /* Black for scrolled nav link hover for max contrast */
+    --color-social-icon-hover: #f39c12; /* Sunflower yellow/orange for social icons */
+
+
+    /* Text & Border Colors */
+    --color-text-dark-gray: #34495e; /* Paragraph Text */
+    --color-section-border: #bdc3c7; /* Content section border for h2 */
+
+    /* Subheading Scroll Colors - These are applied by JavaScript */
+    --color-h2-default: #34495e; /* Default subheading color */
+    --color-h2-active-1: #e74c3c; /* Terracotta */
+    --color-h2-active-2: #f39c12; /* Vibrant Yellow/Orange */
+    --color-h2-active-3: #2ecc71; /* Emerald Green */
+    --color-h2-active-4: #9b59b6; /* Amethyst Purple */
+
+    /* Font Families */
+    --font-main-heading: 'Montserrat', sans-serif; /* For h1, and final-paragraph */
+    --font-subheading: 'Lato', sans-serif; /* For h2 */
+    --font-body: 'Merriweather', serif; /* For paragraphs, etc. */
+    --font-nav-link: 'Open Sans', sans-serif; /* For navigation links */
+}
+
+/* Base Styles */
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+    scroll-padding-top: 70px; /* Offset for fixed navbar when scrolling to anchors */
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    background: linear-gradient(to right, #e0eafc, #cfdef3); /* Subtle blue gradient background */
+    color: var(--color-text-dark-gray);
+    min-height: 100vh; /* Ensure full viewport height for background */
+    overflow-x: hidden; /* Prevent horizontal scroll bar */
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-dark-blue); /* Initial dark blue */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Navbar Hover Effect */
+.navbar:hover {
+    background-color: var(--color-navbar-hover); /* Light pink on hover */
+}
+
+/* Scrolled Navbar Style - INVISIBLE */
+.navbar.scrolled {
+    background-color: transparent; /* Changed to transparent */
+    box-shadow: none; /* Removed box shadow */
+}
+
+/* Scrolled Navbar Hover - This overrides the general hover if already scrolled */
+.navbar.scrolled:hover {
+    /* When scrolled and hovered, it will still go to light pink, overriding transparent */
+    background-color: var(--color-navbar-hover); /* Light pink on hover even when scrolled */
+}
+
+/* Navbar Links */
+.navbar a {
+    color: var(--color-white); /* White text */
+    text-decoration: none;
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--font-nav-link);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Link color adjustment when navbar is light pink (on hover) */
+.navbar:hover a {
+    color: var(--color-dark-blue); /* Darker text for contrast on light pink navbar */
+}
+.navbar.scrolled:hover a {
+    color: var(--color-dark-blue); /* Darker text for contrast on light pink navbar */
+}
+
+/* Navbar Link Hover Effect (Initial State) */
+.navbar a:hover {
+    background-color: var(--color-main-nav-link-hover); /* Darker blue on hover */
+    color: var(--color-white); /* Keep text white */
+}
+
+/* Navbar Link Hover Effect (Scrolled State) */
+.navbar.scrolled a {
+    color: var(--color-white); /* Ensure text remains white even on transparent background */
+}
+.navbar.scrolled a:hover {
+    background-color: var(--color-scrolled-nav-link-hover); /* Black on hover when scrolled for maximum contrast */
+}
+
+/* Social Icons */
+.social-icons {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.social-icons a {
+    color: var(--color-white);
+    font-size: 22px;
+    margin: 0 12px;
+    padding: 0; /* Remove padding from inherited .navbar a */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s ease;
+}
+
+/* Social Icons color adjustment when navbar is light pink (on hover) */
+.navbar:hover .social-icons a,
+.navbar.scrolled:hover .social-icons a {
+    color: var(--color-dark-blue); /* Darker icons for contrast on light pink navbar */
+}
+
+/* Social Icons Hover Effect */
+.social-icons a:hover {
+    color: var(--color-social-icon-hover); /* Sunflower yellow/orange on hover */
+    background-color: transparent; /* No background change for icons */
+}
+
+/* Hero Section */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--color-dark-blue);
+    padding-top: 60px; /* Adjust for fixed navbar height */
+    box-sizing: border-box; /* Include padding in height */
+}
+
+.hero-content {
+    max-width: 900px;
+    padding: 20px;
+}
+
+.hero-section h1 {
+    font-family: var(--font-main-heading);
+    font-size: 4.5em;
+    margin-bottom: 0.3em;
+    line-height: 1.1;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.15);
+    color: var(--color-dark-blue);
+}
+
+.hero-section p {
+    font-family: var(--font-body);
+    font-size: 1.4em;
+    color: var(--color-text-dark-gray);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Main Content Area (Container for content boxes) */
+.content {
+    max-width: 1000px; /* Overall width for the content area */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -100px; /* Pulls content up to overlap hero slightly */
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center content boxes horizontally */
+}
+
+/* Individual Content Boxes/Cards */
+.content-box {
+    background-color: var(--color-content-bg); /* White background for the card */
+    padding: 40px 30px; /* Internal spacing */
+    width: 100%; /* Take full width of its parent */
+    max-width: 800px; /* Limit the card's width */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Lifted card effect */
+    border-radius: 12px; /* Rounded corners */
+    text-align: left;
+    margin-bottom: 0; /* No direct margin, section-spacer provides separation */
+}
+
+/* Spacer for "A4-like" empty pages between sections */
+.section-spacer {
+    height: 50vh; /* Make each spacer take up a percentage of viewport height */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* No background color for spacer (transparent) */
+}
+
+/* Subheadings (h2) */
+.content h2 {
+    font-family: var(--font-subheading);
+    color: var(--color-h2-default); /* Default color */
+    margin-top: 0; /* Padding on content-box handles top spacing */
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-section-border);
+    padding-bottom: 10px;
+    font-size: 2.8em; /* Increased font size */
+    text-align: center; /* Center align section headings */
+    transition: color 0.5s ease; /* Smooth transition for color change */
+}
+
+/* Intro text under main section headings */
+.section-intro-text {
+    text-align: center;
+    font-size: 1.15em;
+    margin-bottom: 40px; /* More space below intro text before content starts */
+    max-width: 700px; /* Limit width for readability */
+    margin-left: auto;
+    margin-right: auto;
+    color: #555;
+}
+
+
+/* JavaScript-applied subheading colors */
+.content h2.active-h2-color-1 { color: var(--color-h2-active-1); }
+.content h2.active-h2-color-2 { color: var(--color-h2-active-2); }
+.content h2.active-h2-color-3 { color: var(--color-h2-active-3); }
+.content h2.active-h2-color-4 { color: var(--color-h2-active-4); }
+
+/* Paragraphs within content boxes (default) */
+.content p {
+    font-family: var(--font-body);
+    color: var(--color-text-dark-gray);
+    margin-bottom: 25px;
+    font-size: 1.1em;
+}
+
+
+/* Service Grid Styles */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid columns */
+    gap: 30px; /* Space between grid items */
+    width: 100%; /* Take full width of parent content-box */
+    margin-top: 20px; /* Space from section intro text */
+}
+
+.service-item {
+    background-color: var(--color-white); /* White background for service cards */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow for each card */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.service-item:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.service-item i {
+    font-size: 3.5em; /* Large icons */
+    color: var(--color-dark-blue); /* Icon color */
+    margin-bottom: 15px;
+}
+
+.service-item h3 {
+    font-family: var(--font-subheading);
+    font-size: 1.6em;
+    color: var(--color-dark-blue);
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: none; /* Remove border from service item headings */
+    padding-bottom: 0;
+}
+
+.service-item p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 0;
+}
+
+
+/* Portfolio Grid Styles */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid columns for portfolio */
+    gap: 30px; /* Space between portfolio items */
+    width: 100%;
+    margin-top: 20px;
+}
+
+.portfolio-item {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Ensures image corners match card corners */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Cover the area, cropping if necessary */
+    display: block; /* Remove extra space below image */
+}
+
+.portfolio-item-content {
+    padding: 20px;
+}
+
+.portfolio-item h3 {
+    font-family: var(--font-subheading);
+    font-size: 1.5em;
+    color: var(--color-dark-blue);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    border-bottom: none; /* Remove border from portfolio item headings */
+    padding-bottom: 0;
+}
+
+.portfolio-item p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* NEW: Contact Info Grid Styles */
+.contact-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+    margin-bottom: 40px; /* Space before the form */
+}
+
+.contact-info-item {
+    background-color: #f7f7f7; /* Light background for contact items */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.contact-info-item i {
+    font-size: 2.5em;
+    color: var(--color-h2-active-2); /* Using a vibrant yellow/orange for icons */
+    margin-bottom: 10px;
+}
+
+.contact-info-item h3 {
+    font-family: var(--font-subheading);
+    font-size: 1.3em;
+    color: var(--color-dark-blue);
+    margin-top: 0;
+    margin-bottom: 5px;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.contact-info-item p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 0;
+}
+
+/* NEW: Contact Form Styles */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 30px;
+    background-color: #fcfcfc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.contact-form h3 {
+    font-family: var(--font-subheading);
+    color: var(--color-dark-blue);
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--color-section-border);
+    padding-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--color-text-dark-gray);
+    font-size: 0.95em;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    box-sizing: border-box; /* Include padding in width */
+    transition: border-color 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+    border-color: var(--color-h2-active-3); /* Emerald green focus */
+    outline: none;
+}
+
+.submit-button {
+    background-color: var(--color-h2-active-1); /* Terracotta button */
+    color: var(--color-white);
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center; /* Center the button in the flex container */
+    margin-top: 20px;
+}
+
+.submit-button:hover {
+    background-color: #c0392b; /* Darker red on hover */
+    transform: translateY(-2px);
+}
+
+
+/* Styling for "End of content." text */
+.final-paragraph {
+    padding: 20px 0;
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    margin-top: 50px; /* Space above */
+    font-family: var(--font-main-heading); /* Montserrat font */
+    font-size: 1.8em; /* Larger size */
+    font-weight: 700; /* Bold */
+    color: var(--color-dark-blue); /* Dark blue color */
+    letter-spacing: 0.05em; /* Slightly increased letter spacing */
+    text-transform: uppercase; /* Uppercase */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
+}
+
+
+/* Responsive Adjustments (Media Queries) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack items vertically */
+        padding: 10px 0;
+        height: auto;
+    }
+
+    .navbar a {
+        padding: 10px 15px;
+        font-size: 15px;
+    }
+
+    .social-icons {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .social-icons a {
+        font-size: 18px;
+        margin: 0 8px;
+    }
+
+    .hero-section {
+        padding-top: 80px;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-section p {
+        font-size: 1.1em;
+    }
+
+    .content {
+        margin-top: -50px;
+        padding: 0 10px;
+    }
+
+    .content-box {
+        padding: 30px 20px;
+        max-width: 95%;
+    }
+
+    .content h2 {
+        font-size: 2.2em;
+    }
+
+    .section-intro-text {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr; /* Stack services vertically on small screens */
+        gap: 20px;
+    }
+
+    .service-item i {
+        font-size: 3em;
+    }
+
+    .service-item h3 {
+        font-size: 1.4em;
+    }
+
+    .service-item p {
+        font-size: 0.9em;
+    }
+
+    /* Responsive for Portfolio Grid */
+    .portfolio-grid {
+        grid-template-columns: 1fr; /* Stack portfolio items vertically on small screens */
+        gap: 20px;
+    }
+    .portfolio-item h3 {
+        font-size: 1.3em;
+    }
+
+    /* Responsive for Contact Info Grid */
+    .contact-info-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .contact-info-item i {
+        font-size: 2em;
+    }
+    .contact-info-item h3 {
+        font-size: 1.2em;
+    }
+
+
+    .section-spacer {
+        height: 30vh; /* Adjusted height for mobile for less empty space */
+    }
+
+    .final-paragraph {
+        font-size: 1.2em;
+        margin-top: 30px;
+    }
+}
